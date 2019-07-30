@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>axle.polus</groupId>
+  <artifactId>czi2tif</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  	
+  <properties>
+	<maven.compiler.source>1.8</maven.compiler.source>
+	<maven.compiler.target>1.8</maven.compiler.target>
+	<mainClass>axle.polus.data.utils.converters.TiledOmeTiffConverter</mainClass>
+  </properties>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<mainClass>${mainClass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<includes>
+									<include>*:*</include>
+								</includes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+  
+ 	<repositories>
+
+		<repository>
+			<id>ome.external</id>
+			<url>http://artifacts.openmicroscopy.org/artifactory/ome.external</url>
+		</repository>
+		<repository>
+			<id>ome.releases</id>
+			<url>http://artifacts.openmicroscopy.org/artifactory/ome.releases</url>
+		</repository>
+		<repository>
+			<id>ome.snapshots</id>
+			<url>http://artifacts.openmicroscopy.org/artifactory/ome.snapshots</url>
+		</repository>
+	</repositories>
+	
+  <dependencies>
+  	<dependency>
+  		<groupId>commons-io</groupId>
+  		<artifactId>commons-io</artifactId>
+  		<version>2.4</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>ome</groupId>
+  		<artifactId>formats-gpl</artifactId>
+  		<version>6.0.1</version>
+		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+  <name>polus-czi2tif</name>
+  
+</project>
