@@ -13,6 +13,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.io.FilenameUtils;
 
 import axle.polus.data.utils.converters.TiledOmeTiffConverter;
 import loci.formats.ImageReader;
@@ -120,8 +121,9 @@ public class TiledOmeTiffConverterMain {
 		LOG.log(Level.INFO, "Starting tile tiff converter!!");
 		
 		for (File image : images) {
+			String outFile = outputFileDir.concat(File.separator).concat(FilenameUtils.getBaseName(image.getName())).concat(".ome.tif");
 			
-			TiledOmeTiffConverter tiledReadWriter = new TiledOmeTiffConverter(image.getAbsolutePath(), outputFileDir.concat(File.separator).concat(image.getName()), tileSizeXPix, tileSizeYPix);
+			TiledOmeTiffConverter tiledReadWriter = new TiledOmeTiffConverter(image.getAbsolutePath(), outFile, tileSizeXPix, tileSizeYPix);
 			// initialize the files
 			tiledReadWriter.run();
 			
