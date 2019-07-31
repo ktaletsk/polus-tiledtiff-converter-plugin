@@ -5,6 +5,7 @@ This WIPP plugin takes any image type supported by Bioformats and converts it to
 For more information on WIPP, visit the [official WIPP page](https://isg.nist.gov/deepzoomweb/software/wipp).
 
 **This plugin is an alpha version and subject to substantial changes.**
+_Note:_ This plugin looks for files in the metadata section of a collection that are compatible with Bioformats. In the future, WIPP will likely convert all Bioformats compatible image formats into tiled tiff, removing the need for this plugin. The current need for this plugin is that WIPPs tiled tiff conversion process only grabs the first image plane, while this plugin grabs all image planes in a series. Ultimately, this permits complete conversion of data (including all channels, z-positions, and timepoints).
 
 ## Building
 
